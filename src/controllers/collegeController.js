@@ -26,7 +26,10 @@ const createCollege = async function(req, res) {
 
 
 
+
 const getCollegeDetails = async function (req, res) {
+
+
     try {
         let data = req.query
 
@@ -40,8 +43,12 @@ const getCollegeDetails = async function (req, res) {
             res.status(400).send({ status: false, msg: "please enter collegeName" })
         }
 
-        let specificData = await collegeModel.find({ collegeId: verifyCollegeName._id }).select({ name: 1 })
-        let specificData2 = await internModel.find({ collegeId: verifyCollegeName._id }).select({ name: 1, email: 1, mobile: 1, collegeId: 1 })
+
+       
+
+        let specificData = await collegeModel.findOne({collegeId: verifyCollegeName._id}).select({name:1 ,fullName:1,logoLink:1})
+        let specificData2 = await internModel.find({collegeId: verifyCollegeName._id}).select({name: 1, email: 1, mobile: 1, collegeId: 1})
+ 
         console.log(specificData)
         if (specificData.length == 0) {
             res.status(404).send({ status: false, msg: "no such data found in the db with the given condition in the query" })
@@ -50,8 +57,6 @@ const getCollegeDetails = async function (req, res) {
         else {
             res.status(200).send({ status: true, msg: specificData, intern: specificData2 })
         }
-
-
     }
 
 

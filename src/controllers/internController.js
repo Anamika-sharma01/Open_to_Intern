@@ -3,11 +3,14 @@ const internModel = require('../models/internModel')
 
 const createIntern = async function (req, res) {
     try {
-        let intern = req.body
-        let name = req.body.name
-        let mobile = req.body.mobile
-        let email = req.body.email
-        let collegeId = req.body.collegeId
+
+       
+     let intern = req.body
+    let name = req.body.name
+    let mobile = req.body.mobile
+    let email = req.body.email
+    let collegeId = req.body.collegeId
+
 
 
         if (!name) {
@@ -28,8 +31,10 @@ const createIntern = async function (req, res) {
     } catch (error) {
         res.send(error.message)
 
-    }
 
+
+    }
 }
+
 
 module.exports.createIntern = createIntern;
