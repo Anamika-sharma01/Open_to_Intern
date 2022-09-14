@@ -3,12 +3,6 @@ const route = require('./routes/route.js')
 const app = express()
 const mongoose = require('mongoose')
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
-
-
 
 mongoose.connect("mongodb+srv://vikramsingh7568:AlLbBhXCJYPKmwIK@cluster0.5swhv4u.mongodb.net/group-33-Database?retryWrites=true&w=majority", {
     useNewUrlParser: true
