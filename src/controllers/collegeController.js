@@ -22,3 +22,4 @@ const createcollege = async function (req, res) {
     res.status(201).send({ status: true, data: savecollege })
 
 }
+module.exports.createcollege = createcollege

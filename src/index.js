@@ -2,7 +2,11 @@ const express = require('express')
 const route = require('./routes/route.js')
 const app = express()
 const mongoose = require('mongoose')
-app.use(express.json())
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 
 mongoose.connect("mongodb+srv://vikramsingh7568:AlLbBhXCJYPKmwIK@cluster0.5swhv4u.mongodb.net/group-33-Database?retryWrites=true&w=majority", {
@@ -12,7 +16,7 @@ mongoose.connect("mongodb+srv://vikramsingh7568:AlLbBhXCJYPKmwIK@cluster0.5swhv4
     .catch(err => console.log(err))
 
 
-app.use(route);
+app.use("/",route);
 
 
 app.listen(process.env.PORT || 3000, function () {
