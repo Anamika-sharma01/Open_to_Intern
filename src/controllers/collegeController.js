@@ -1,4 +1,3 @@
-
 const collegeModel = require("../models/collegeModel")
 
 
@@ -64,5 +63,6 @@ const getCollegeDetails = async (req, res){
 }
 
 
-module.exports.getCollegeDetails = getCollegeDetails
-module.exports.createCollege = createCollege
+
+module.exports.getCollegeDetails = getCollegeDetails;
+module.exports.createCollege = createCollege;
