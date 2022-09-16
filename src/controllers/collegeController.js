@@ -2,6 +2,7 @@ const collegeModel = require("../models/collegeModel")
 const internModel = require("../models/internModel")
 const validate = require('validator')
 //const { populate } = require("../models/collegeModel")
+const axios = require('axios')
 
 const createCollege = async function (req, res) {
     try {
@@ -29,9 +30,27 @@ const createCollege = async function (req, res) {
     if (!fullName) {
         return res.status(400).send({ status: false, msg: "please provide valid fullname" })
     }
+
+
     if (!logoLink) {
         return res.status(400).send({ status: false, msg: "please provide valid logolink" })
     }
+
+   
+     //***********************/
+     //link cheking for logo 
+
+         let correctLink = false 
+         await axios.get(logoLink)
+          .then((res) => {  correctLink = true})   
+          .catch((error) => {correctLink = false})
+
+          if(correctLink == false){
+           return  res.status(400).send({status : false, message : "Provide correct Logo Link !!"})
+          } 
+
+     //**************************** */     
+
     if (name.includes(" ")) {
         return res.status(400).send({
             status: false, message: "Space is not allowed in name "
@@ -66,14 +85,8 @@ const createCollege = async function (req, res) {
 
     let checkname = await collegeModel.findOne({ name })
     if (checkname) {
-        return res.status(200).send({ status: false, msg: "this name is already present in database" })
+        return res.status(409).send({ status: false, msg: "this name is already present in database" })
     }
-
-
-    if (!validate.isURL(logoLink)) {
-        return res.status(400).send({ status: false, msg: "URL is not valid " })
-    }
-       
 
 
      let savecollege = await collegeModel.create(college)
