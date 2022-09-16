@@ -1,7 +1,7 @@
 const collegeModel = require("../models/collegeModel")
 const internModel = require("../models/internModel")
 const validate = require('validator')
-const { populate } = require("../models/collegeModel")
+//const { populate } = require("../models/collegeModel")
 
 const createCollege = async function (req, res) {
     try {
