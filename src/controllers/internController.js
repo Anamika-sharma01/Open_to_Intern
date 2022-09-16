@@ -3,7 +3,7 @@ const validate = require('validator')
 const mongoose = require('mongoose')
 const collegeModel = require('../models/collegeModel')
 const createIntern = async function (req, res) {
-   // try {
+    try {
         let intern = req.body
         let { name, mobile, email, isDeleted ,collegeName } = req.body
         let arr = Object.keys(req.body)
@@ -92,8 +92,8 @@ const createIntern = async function (req, res) {
 
         res.status(201).send({ status: true, data: response })
 
-    // } catch (error) {
-    //     res.send(error.message)
-    // }
+    } catch (error) {
+         res.send(error.message)
+     }
 }
 module.exports.createIntern = createIntern;
