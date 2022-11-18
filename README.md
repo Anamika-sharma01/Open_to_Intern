@@ -105,3 +105,26 @@ College details
     ]
   }
 }
+
+
+
+
+ <!-- // if (!validate.isURL(logoLink)) {
+    //     return res.status(400).send({ status: false, msg: "URL is not valid " })
+    // }
+     //***********************/
+     //link cheking for logo 
+
+         let correctLink = false 
+         await axios.get(logoLink)
+          .then((res) => {
+          //  if(res.status == 200 ){
+              //  if(res.headers["content-type"].startsWith("image/"))
+                correctLink = true
+            //}
+          })   
+          .catch((error) => {correctLink = false})
+
+          if(correctLink == false){
+           return  res.status(400).send({status : false, message : "Provide correct Logo Link !!"})
+          }  -->
